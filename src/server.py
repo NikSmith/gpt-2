@@ -21,9 +21,9 @@ her: sure, what do you want to talk about?"""
 
 def interact_model(
     message="",
-    model_name='774M',
+    model_name='1558M',
     models_dir='models',
-    seed=1337,
+    seed=None,
     length=20,
     temperature=1,
     top_k=0
