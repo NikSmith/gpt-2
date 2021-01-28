@@ -58,7 +58,6 @@ def interact_model(
         sys.stdout.flush()
         
         encoded_conversation = enc.encode(conversation)
-        #print(len(encoded_conversation))
         result = sess.run(output, feed_dict={
             context: [encoded_conversation]
         })[:, len(encoded_conversation):]
@@ -75,6 +74,7 @@ def interact_model(
         sys.stdout.write(reply+'\n')
         sys.stdout.flush()
         conversation = conversation + reply
+        print(conversation)
         return reply
 
 class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
@@ -87,7 +87,6 @@ class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
         data = json.loads(body.decode("utf-8"))
         result = ""
         if 'text' in data:
-            print("DATTA", data['text'])
             result = interact_model(data['text'])
             exit_if=True
         response.write(result.encode())
